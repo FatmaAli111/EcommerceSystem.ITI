@@ -1,3 +1,4 @@
+// const container = document.getElementById("products");
 document.addEventListener("DOMContentLoaded", () => {
   const cartContainer = document.getElementById("full-div");
   const emptyDiv = document.getElementById("empty-div");
@@ -14,6 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const TAX_RATE = 0.08;
   let discount = 0;
 
+function loadProducts() {
+  const stored = localStorage.getItem("products");
+  return stored ? JSON.parse(stored) : [...products];
+}
+
+function saveProducts(products) {
+  localStorage.setItem("products", JSON.stringify(products));
+}
 
 
 
@@ -138,3 +147,18 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCart();
 });
 
+let dashboardCart = JSON.parse(localStorage.getItem("dashboard")) || [];
+function saveDashboardCart() {
+  localStorage.setItem("dashboard", JSON.stringify(dashboardCart));
+}
+
+function addToDashboardCart(products) {
+ dashboardCart.push(products );
+  saveDashboardCart();
+  alert(`${product.title} added to dashboard cart 🛒`);
+}
+
+const submitOrderBtn = document.getElementById("submit-order");
+if (submitOrderBtn) {
+    submitOrderBtn.onclick = () => addToDashboardCart(products);
+}
