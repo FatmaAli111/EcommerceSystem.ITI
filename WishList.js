@@ -2,14 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const wishlistContainer = document.getElementById("full-div");
   const emptyDiv = document.getElementById("empty-div");
   const clearWishlistBtn = document.getElementById("clearCart");
-function loadProducts() {
-  const stored = localStorage.getItem("products");
-  return stored ? JSON.parse(stored) : [...defaultProducts];
-}
-
-function saveProducts(products) {
-  localStorage.setItem("products", JSON.stringify(products));
-}
 
   // ===============================
   // Wishlist Storage
